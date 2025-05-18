@@ -22,6 +22,22 @@ header {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+ /* Logo and title layout */
+.logo-container {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 15px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    border-radius: 8px; /* Optional: rounded corners */
+}
         
 nav {
     margin-top: 10px;
@@ -161,7 +177,9 @@ footer {
 <body>
     
     <header>
-        <h1>FCC PHILIPPINES CORP.</h1>
+         <div class="logo-container">
+        <img src="fcc.jpg" alt="FCC Logo" class="logo">
+    </div>
         <nav>
             <a href="#about">About</a>
             <a href="#product">New Product</a>
