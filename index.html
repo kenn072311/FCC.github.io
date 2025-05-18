@@ -127,25 +127,33 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Gallery */
-.gallery {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Image Zoom Modal */
+#imgModal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
 }
 
-.gallery img {
-    width: 30%;
-    height: auto;
-    border: 3px solid royalblue;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+#imgModalContent {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px black;
+    animation: zoomIn 0.3s ease;
 }
 
-.gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 /* Form Styling */
@@ -256,11 +264,13 @@ footer {
 
 <section id="gallery">
     <h2>Image Gallery</h2>
-    <div class="gallery">
-        <img src="fcc7.jpg" alt="Clutch 1">
-        <img src="fcc6.jpg" alt="Clutch 2">
-        <img src="fcc5.jpg" alt="Clutch 3">
-    </div>
+    <!-- Image Zoom Modal -->
+<div id="imgModal" onclick="closeModal()">
+    <img id="imgModalContent" src="" alt="Zoomed Image">
+    <img id="imgModalContent" src="" alt="Zoomed Image">
+    <img id="imgModalContent" src="" alt="Zoomed Image">
+</div>
+
 </section>
 
 <section id="contact">
@@ -295,6 +305,20 @@ footer {
 function toggleMenu() {
   const navLinks = document.getElementById("navLinks");
   navLinks.classList.toggle("show");
+}
+// Open image in modal
+document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+        const modal = document.getElementById('imgModal');
+        const modalImg = document.getElementById('imgModalContent');
+        modal.style.display = "block";
+        modalImg.src = img.src;
+    });
+});
+
+// Close modal
+function closeModal() {
+    document.getElementById('imgModal').style.display = "none";
 }
 </script>
 
