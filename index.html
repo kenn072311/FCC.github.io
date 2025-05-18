@@ -55,6 +55,57 @@ nav a:hover {
     color: gold;
 }
 
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(65, 105, 225, 0.95);
+        position: absolute;
+        right: 10px;
+        top: 70px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        z-index: 1000;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
 /* Section Layout */
 section {
     background-color: white;
@@ -171,75 +222,81 @@ footer {
         font-size: 1em;
     }
 }
-
 </style>
 </head>
 <body>
     
-    <header>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div class="logo-container">
-      <img src="fcc.jpg" alt="FCC Logo" class="logo">
-    </div>
-    <h1>FCC PHILIPPINES CORP.</h1>
-  </div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#product">New Product</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
-            
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>Company Background</h2>
-        <p>FCC PHILIPPINES CORP. is a dedicated manufacturer of high-quality clutch linings. With over 30 years in the industry, we provide durable, precision-engineered auto parts that power performance and safety for vehicles worldwide.</p>
-    </section>
-
-    <section id="product">
-        <h2>New Product Launch</h2>
-        <p>We are excited to unveil our latest innovation — the **NextGen Racing Pulley Set**, engineered for enhanced longevity and peak performance in all terrains. Stay tuned for more updates and launch offers!</p>
-    </section>
-
-    <section id="gallery">
-        <h2>Image Gallery</h2>
-        <div class="gallery">
-            <img src="fcc1.jpg" alt="Clutch 1">
-            <img src="fcc6.jpg" alt="Clutch 2">
-            <img src="images/clutch3.jpg" alt="Clutch 3">
+<header>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo-container">
+            <img src="fcc.jpg" alt="FCC Logo" class="logo">
         </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-       <div class="container">
-  <h1>FormSubmit Demo</h1>
-  <form target="_blank" action="https://formsubmit.co/kenstef072311@gmail.com" method="POST">
-    <div class="form-group">
-      <div class="form-row">
-        <div class="col">
-          <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-        </div>
-        <div class="col">
-          <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-        </div>
-      </div>
+        <h1>FCC PHILIPPINES CORP.</h1>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
     </div>
-    <div class="form-group">
-      <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
-  </form>
-</div>
-    </section>
+    <nav>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#product">New Product</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <footer>
-        <p>&copy; 2025 FCC PHILIPPINES CORP. All rights reserved.</p>
-    </footer>
+<section id="about">
+    <h2>Company Background</h2>
+    <p>FCC PHILIPPINES CORP. is a dedicated manufacturer of high-quality clutch linings. With over 30 years in the industry, we provide durable, precision-engineered auto parts that power performance and safety for vehicles worldwide.</p>
+</section>
+
+<section id="product">
+    <h2>New Product Launch</h2>
+    <p>We are excited to unveil our latest innovation — the <strong>NextGen Racing Pulley Set</strong>, engineered for enhanced longevity and peak performance in all terrains. Stay tuned for more updates and launch offers!</p>
+</section>
+
+<section id="gallery">
+    <h2>Image Gallery</h2>
+    <div class="gallery">
+        <img src="fcc1.jpg" alt="Clutch 1">
+        <img src="fcc6.jpg" alt="Clutch 2">
+        <img src="images/clutch3.jpg" alt="Clutch 3">
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <div class="container">
+        <h1>FormSubmit Demo</h1>
+        <form target="_blank" action="https://formsubmit.co/kenstef072311@gmail.com" method="POST">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="col">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 FCC PHILIPPINES CORP. All rights reserved.</p>
+</footer>
+
+<!-- Hamburger Toggle Script -->
+<script>
+function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("show");
+}
+</script>
+
 </body>
 </html>
-
-
-
-
