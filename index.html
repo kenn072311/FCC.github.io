@@ -130,7 +130,19 @@ section {
 section:hover {
     transform: scale(1.01);
 }
+.learn-more-btn {
+    background-color: #ff4500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.learn-more-btn:hover {
+    background-color: #e03e00;
+}
 /* Headings */
 h2 {
     color: royalblue;
@@ -171,14 +183,7 @@ h2 {
       border-radius: 12px;
     }
 
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 600px;
-    margin: auto;
-}
+
 
 input, text area {
     padding: 12px;
@@ -266,21 +271,24 @@ footer {
         </ul>
     </nav>
 </header>
-
+<button class="learn-more-btn" data-service="digital-art">Learn More</button>
+            <div class="service-details" id="digital-art">
 <section id="about">
     <h2>Company Background</h2>
     <p>FCC PHILIPPINES CORP. is a dedicated manufacturer of high-quality clutch linings. With over 30 years in the industry, we provide durable, precision-engineered auto parts that power performance and safety for vehicles worldwide.</p>
 </section>
-
+</div>
+<button class="learn-more-btn" data-service="digital-art">Learn More</button>
+            <div class="service-details" id="digital-art">
 <section id="product">
     <h2>New Product Launch</h2>
     <p>We are excited to unveil our latest innovation — the <strong>NextGen Racing Pulley Set for HONDA Click 125i</strong>, engineered for enhanced longevity and peak performance in all terrains. Stay tuned for more updates and launch offers!</p>
     <div style="text-align:center; margin-top: 20px;">
-        <img src="FCC-CVT-Set.png" alt="NextGen Racing Pulley Set for HONDA Click 125i" style="max-width: 300px; width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-        <img src="fcc9.jpg" alt="NextGen Racing Pulley Set for HONDA Click 125i" style="max-width: 300px; width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+        <img src="FCC-CVT-Set.png" alt="NextGen Racing Pulley Set for HONDA Click 125i" class="zoomable" style="max-width: 300px; width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+<img src="fcc4.jpg" alt="NextGen Racing Pulley Set for HONDA Click 125i" class="zoomable" style="max-width: 300px; width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
     </div>
 </section>
-
+</div>
 <section id="gallery">
     <h2>Image Gallery</h2>
     <div class="image-gallery">
@@ -292,27 +300,27 @@ footer {
 
 
 <section id="contact">
-    <h2>Contact Us</h2>
-    <div class="container">
-        <h1>FormSubmit Demo</h1>
-        <form target="_blank" action="https://formsubmit.co/kenstef072311@gmail.com" method="POST">
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                    </div>
-                    <div class="col">
-                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
-        </form>
+ <div class="container">
+ <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <form target="_blank" action="https://formsubmit.co/kenstef072311@gmail.com" method="POST">
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col">
+          <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+        </div>
+        <br>
+        <div class="col">
+          <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+        </div>
+      </div>
     </div>
-</section>
+    <br>
+    <div class="form-group">
+      <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
+  </form>
+</div>
 
 <footer>
     <p>&copy; 2025 FCC PHILIPPINES CORP. All rights reserved.</p>
@@ -336,6 +344,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
     });
+    // Handle Learn More Buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.learn-more-btn');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const serviceId = button.dataset.service;
+            const details = document.getElementById(serviceId);
+
+            if (details.style.display === 'block') {
+                details.style.display = 'none'; // Hide details
+                button.textContent = 'Learn More'; // Reset button text
+            } else {
+                details.style.display = 'block'; // Show details
+                button.textContent = 'Show Less'; // Update button text
+            }
+        });
+    });
+});
 </script>
 
 </body>
