@@ -32,6 +32,12 @@
       padding: 0.01px 0;
       text-align: right;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.4s ease;
+    }
+
+    /* NEW: Add background transition class for scroll effect */
+    header.scrolled {
+      background-color: rgba(65, 105, 225, 0.85);
     }
 
     .logo-container {
@@ -244,6 +250,11 @@
         font-size: 1em;
       }
     }
+
+    /* NEW: Remove background color for #home only */
+    #home {
+      background-color: transparent !important;
+    }
   </style>
 </head>
 
@@ -358,7 +369,16 @@
         });
       });
     });
+
+    // NEW: Add scroll listener to change header background
+    window.addEventListener('scroll', function () {
+      const header = document.querySelector('header');
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
   </script>
 </body>
 </html>
-    
