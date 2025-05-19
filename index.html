@@ -32,12 +32,15 @@
       padding: 0.01px 0;
       text-align: right;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.4s ease;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      transition: background-color 0.3s ease;
     }
 
-    /* NEW: Add background transition class for scroll effect */
     header.scrolled {
-      background-color: rgba(65, 105, 225, 0.85);
+      background-color: rgba(65, 105, 225, 0.9);
     }
 
     .logo-container {
@@ -122,10 +125,9 @@
     }
 
     section {
-      background-color: none;
       padding: 40px 20px;
       max-width: 1000px;
-      margin: 30px auto;
+      margin: 100px auto 60px auto;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease;
@@ -251,17 +253,27 @@
       }
     }
 
-    /* NEW: Remove background color for #home only */
-    #home {
-      background-color: transparent !important;
+    /* Enhanced Sections */
+    .enhanced-section {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(65, 105, 225, 0.2);
+      padding: 40px 30px;
+      margin: 60px auto;
+      max-width: 1000px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .enhanced-section h2 {
+      color: #1c2a4d;
     }
   </style>
 </head>
-
 <body>
-  <!-- HOME SECTION INCLUDING HEADER -->
+
+  <!-- HOME SECTION WITH HEADER -->
   <section id="home" style="height: 100vh;">
-    <header>
+    <header id="mainHeader">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div class="logo-container">
           <img src="fcc.jpg" alt="FCC Logo" class="logo">
@@ -281,28 +293,24 @@
     </header>
   </section>
 
-  <!-- CONTENT SECTIONS UNDER BACKGROUND -->
-  <button class="learn-more-btn" data-service="about">Learn More</button>
-  <div class="service-details" id="about">
-    <section id="about">
-      <h2>Company Background</h2>
-      <p>Founded on a passion for excellence and innovation, our company has become a leading manufacturer of motorcycle clutches over 30 years having 53.1% Global Share. With decades of expertise, we are dedicated to proving top-tier performance and reliability to riders worldwide.</p>
-    </section>
-  </div>
+  <!-- ABOUT -->
+  <section id="about" class="enhanced-section">
+    <h2>Company Background</h2>
+    <p>Founded on a passion for excellence and innovation, our company has become a leading manufacturer of motorcycle clutches over 30 years having 53.1% Global Share. With decades of expertise, we are dedicated to proving top-tier performance and reliability to riders worldwide.</p>
+  </section>
 
-  <button class="learn-more-btn" data-service="product">Learn More</button>
-  <div class="service-details" id="product">
-    <section id="product">
-      <h2>New Product Launch</h2>
-      <p>We are excited to unveil our latest innovation — the <strong>NextGen Racing Pulley Set for HONDA Click 125i</strong>, engineered for enhanced longevity and peak performance in all terrains. Stay tuned for more updates and launch offers!</p>
-      <div style="text-align:center; margin-top: 20px;">
-        <img src="FCC-CVT-Set.png" alt="Product Image" class="zoomable">
-        <img src="fcc9.jpg" alt="Product Image" class="zoomable">
-      </div>
-    </section>
-  </div>
+  <!-- PRODUCT -->
+  <section id="product" class="enhanced-section">
+    <h2>New Product Launch</h2>
+    <p>We are excited to unveil our latest innovation — the <strong>NextGen Racing Pulley Set for HONDA Click 125i</strong>, engineered for enhanced longevity and peak performance in all terrains. Stay tuned for more updates and launch offers!</p>
+    <div style="text-align:center; margin-top: 20px;">
+      <img src="FCC-CVT-Set.png" alt="Product Image" class="zoomable">
+      <img src="fcc9.jpg" alt="Product Image" class="zoomable">
+    </div>
+  </section>
 
-  <section id="gallery">
+  <!-- GALLERY -->
+  <section id="gallery" class="enhanced-section">
     <h2>Image Gallery</h2>
     <div class="image-gallery">
       <img src="fcc7.jpg" alt="Image 1" class="zoomable">
@@ -314,7 +322,8 @@
     </div>
   </section>
 
-  <section id="contact">
+  <!-- CONTACT -->
+  <section id="contact" class="enhanced-section">
     <h2>Contact us</h2>
     <div class="container">
       <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
@@ -328,6 +337,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 FCC PHILIPPINES CORP. All rights reserved.</p>
     <p>
@@ -336,6 +346,7 @@
     </p>
   </footer>
 
+  <!-- SCRIPT -->
   <script>
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('show');
@@ -354,30 +365,15 @@
         });
       });
 
-      const buttons = document.querySelectorAll('.learn-more-btn');
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          const serviceId = button.dataset.service;
-          const details = document.getElementById(serviceId);
-          if (details.style.display === 'block') {
-            details.style.display = 'none';
-            button.textContent = 'Learn More';
-          } else {
-            details.style.display = 'block';
-            button.textContent = 'Show Less';
-          }
-        });
+      // Scroll effect on navbar
+      window.addEventListener("scroll", function () {
+        const header = document.getElementById("mainHeader");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
       });
-    });
-
-    // NEW: Add scroll listener to change header background
-    window.addEventListener('scroll', function () {
-      const header = document.querySelector('header');
-      if (window.scrollY > 10) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
     });
   </script>
 </body>
